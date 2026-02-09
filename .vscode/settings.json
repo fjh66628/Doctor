@@ -57,5 +57,5 @@
         "Temp/": true
     },
     "Doctor.slnx=======dotnet.defaultSolution": "dot-t.slnx>>>>>>>origin/仓库系统",
-    "dotnet.defaultSolution": "dot-test.slnx"
+    "dotnet.defaultSolution": "Doctor.slnx"
 }

@@ -10,11 +10,13 @@ public class MedicineInventory : MonoBehaviour
 {
 
     public InventoryManager inventoryManager;
-    [SerializeField]List<Button> buttons;//传入按钮
+    [SerializeField]Button assistButton;
+    [SerializeField]Button medicineButton;//传入按钮
     [SerializeField]Image detailUI;
     [SerializeField]TextMeshProUGUI medicineName;
     [SerializeField]TextMeshProUGUI medicineDetail;
-    [SerializeField]List<TextMeshProUGUI> textMeshProUGUIs;//传入按钮的文本
+    [SerializeField]TextMeshProUGUI assistHerbText;
+    [SerializeField]TextMeshProUGUI medicineText;//传入按钮的文本
     public Patient patient;//对应的病人实例
     int lastIndex = -1;
     int selectedIndex = -1; //当前被选中的药物索引
@@ -29,10 +31,12 @@ public class MedicineInventory : MonoBehaviour
 
     void UpdateUI()
     {
-        for(int i = 0 ; i < 3 ; i++ )
+        medicineButton.image.sprite = inventoryManager.GetMedicine().getMedicineSprite;
+        medicineText.text = inventoryManager.GetMedicine().getMedicineName;
+        if(inventoryManager.GetAssistHerb() != null)
         {
-            buttons[i].image.sprite = inventoryManager.GetMedicine(i).getMedicineSprite;
-            textMeshProUGUIs[i].text = inventoryManager.GetMedicine(i).getMedicineName;
+            assistButton.image.sprite = inventoryManager.GetAssistHerb().getAssistHerbSprite;
+            assistHerbText.text = inventoryManager.GetAssistHerb().getAssistHerbName;
         }
     }//仓库更新的时候更新UI
 
@@ -50,32 +54,33 @@ public class MedicineInventory : MonoBehaviour
             detailUI.gameObject.SetActive(false);
             selectedIndex = -1; //取消选择
         }
-        
-        // 按X键使用选中的药物
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            UseMedicineOnPatient();
-        }
     }//当Z键按下后或X键按下后
     
+
     // 使用选中的药物给患者
-    private void UseMedicineOnPatient()
-    {
+    public void UseMedicineOnPatient()
+    { 
         if(selectedIndex == -1 || patient == null)
         {
             Debug.LogWarning("未选择药物或患者不存在");
             return;
         }
         
-        Medicine selectedMedicine = inventoryManager.GetMedicine(selectedIndex);
+        Medicine selectedMedicine = inventoryManager.GetMedicine();
         if(selectedMedicine != null)
         {
+            if(inventoryManager.GetAssistHerb() != null)
+            {
+                selectedMedicine.ChangeInternalWound(selectedMedicine.getInsideWound + inventoryManager.GetAssistHerb().getInternalWound);
+                selectedMedicine.ChangeOutsideWound(selectedMedicine.getOutsideWound + inventoryManager.GetAssistHerb().getOutsideWound);
+                selectedMedicine.ChangeMindWound(selectedMedicine.getMindWound + inventoryManager.GetAssistHerb().getMindWound);
+            }
             patient.ApplyMedicine(selectedMedicine);
             Debug.Log($"给患者使用了药物: {selectedMedicine.getMedicineName}");
-            
+            inventoryManager.DeleteMedicine();
+            inventoryManager.DeleteAssistHerb();
             // 使用后隐藏详情面板并取消选择
             detailUI.gameObject.SetActive(false);
-            lastIndex = -1;
             selectedIndex = -1;
         }
     }
@@ -84,20 +89,37 @@ public class MedicineInventory : MonoBehaviour
         if(lastIndex != i)
         {
             detailUI.gameObject.SetActive(true);
-            medicineName.text = inventoryManager.GetMedicine(i).getMedicineName;
-            medicineDetail.text = inventoryManager.GetMedicine(i).getMedicineDetail;
+            medicineName.text = inventoryManager.GetMedicine().getMedicineName;
+            medicineDetail.text = inventoryManager.GetMedicine().getMedicineDetail;
             lastIndex = i;
             selectedIndex = i; //更新当前选中的药物
         }
         else
         {
             detailUI.gameObject.SetActive(false);
-            if (inventoryManager.GetMedicine(i).getMedicineName != "空")
-                EventManager.CallSeleckedMedicine(i);
             lastIndex = -1;
             selectedIndex = -1; //取消选择
         }
 
     }//点击，选中的逻辑
+    
+    public void ClearDesk()
+    {
+        inventoryManager.DeleteAssistHerb();
+        inventoryManager.DeleteMedicine();
+        UpdateUI();
+    }
 
+    public void CheckDetail()
+    {
+        if(inventoryManager.GetMedicine() != null)
+        {
+            detailUI.gameObject.SetActive(true);
+            medicineName.text = "复方药剂";
+            int mindCure = inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getMindWound + inventoryManager.GetMedicine().getMindWound;
+            int outCure = inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getOutsideWound + inventoryManager.GetMedicine().getOutsideWound;
+            int insideCure = inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getInternalWound + inventoryManager.GetMedicine().getInsideWound;
+            medicineDetail.text = $"内伤-{insideCure}\n外伤-{outCure}\n精神伤-{mindCure}"; 
+        }
+    }
 }

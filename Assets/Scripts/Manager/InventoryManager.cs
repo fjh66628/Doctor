@@ -12,7 +12,6 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]private MedicineSQ medicineData;
     [SerializeField]private AssistHerbSQ assistHerbData;
     //还要获取当前天数来确定草药仓库中的药物数量
-    int medicineIndex = 0;
     void OnEnable()
     {
         EventManager.AddHerbEvent += AddHerb;
@@ -26,9 +25,10 @@ public class InventoryManager : MonoBehaviour
     [Header("草药仓库数据")]
     [SerializeField]List<Herb> herbInventory = new List<Herb>();
     [Header("药品仓库数据")]
-    [SerializeField]List<Medicine> medicineInventory = new List<Medicine>();//创建两个仓库列表
+    [SerializeField]Medicine medicineInventory = new Medicine();//创建两个仓库列表
     [Header("副药仓库数据")]
     [SerializeField]List<AssistHerb> assistHerbInventory;
+    [SerializeField]AssistHerb assistHerb;//桌子上的副药
     void Start()
     {
         UpDateInventory();
@@ -49,7 +49,6 @@ public class InventoryManager : MonoBehaviour
         // 清空已有仓库数据
         herbInventory.Clear();
         assistHerbInventory.Clear();
-        medicineInventory.Clear();
         
         // 重新加载草药数据
         int maxHerbNumb = herbData.getHerbList.Count - 1;
@@ -59,13 +58,6 @@ public class InventoryManager : MonoBehaviour
                 AddHerb(herbData.getHerbList[i+1]);
             else
                 AddHerb(herbData.getHerbList[0]);
-        }
-        
-        // 重新加载药品数据
-        int maxMedicineNumb = 3;
-        for(int i = 0 ; i < maxMedicineNumb ; i ++)
-        {
-            AddMedicine(medicineData.getMedicinesList[0]);
         }
         
         // 重新加载辅助草药数据
@@ -94,12 +86,12 @@ public class InventoryManager : MonoBehaviour
     }
     void AddMedicine(Medicine medicine)
     {
-        medicineInventory.Add(medicine);
+        medicineInventory = medicine;
     }
     
-    public Medicine GetMedicine(int index)
+    public Medicine GetMedicine()
     {
-        return medicineInventory[index];
+        return medicineInventory;
     }
     public Herb GetHerb(int index)
     {
@@ -117,22 +109,25 @@ public class InventoryManager : MonoBehaviour
     {
         return assistHerbInventory == null ? 0 : assistHerbInventory.Count;
     }
-    public void DeleteMedicine(Medicine medicine , int i)
+    public void DeleteMedicine()
     {
-        medicineInventory[i] = medicine;
+        medicineInventory = medicineData.getMedicinesList[0];
         EventManager.CallMedicineInventoryUPdate();
     }
     public void AddComebineMedicine(Medicine medicine)
     {
-        for (int i = 0; i < medicineInventory.Count; i++)
+        if (medicineInventory.getMedicineName == "空")
         {
-            if (medicineInventory[i].getMedicineName == "空")
-            {
-                medicineInventory [i] = medicine;
-                return;
-            }
+            medicineInventory = medicine;
+            return;
         }
-        medicineInventory[medicineIndex] = medicine;
-        medicineIndex++;
     }
+    public AssistHerb GetAssistHerb()
+    {
+        return assistHerb;
+    }//外部访问桌子上的副药
+    public void DeleteAssistHerb()
+    {
+        assistHerb = null;
+    }//删除桌子上的副药
 }

@@ -64,7 +64,7 @@ public class Patient : MonoBehaviour
             outsidewoundnum - medicine.getOutsideWound < 0f ||
             spiritwoundnum - medicine.getMindWound < 0f)
         {
-            Debug.LogWarning($"药剂 {medicine.getMedicineName} 超过患者所需，拒绝使用");
+            EventManager.CallFailToCure();
             return;
         }
 

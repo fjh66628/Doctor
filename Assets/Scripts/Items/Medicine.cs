@@ -33,5 +33,6 @@ public class Medicine
     public void ChangeName(string name) {  medicineName = name; }
     public void ChangeDetail() { medicineDetail = "外伤" + outsideWound + "\n" + "内伤" + insideWound + "\n"; }
     public void ChangeSprite(Sprite sprite) { medicineSprite = sprite; }
+    public void ChangeMindWound(int wound){mindWound = wound;}
     
 }
