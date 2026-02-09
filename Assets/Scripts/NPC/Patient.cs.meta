@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6a02dc9fef353684390163ce23f4de15
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - AC_Text: {instanceID: 0}
+  - BC_Text: {instanceID: 0}
+  - illnessSQ: {fileID: 11400000, guid: 64f181a8a24a1ed48b9f001812b44e23, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
