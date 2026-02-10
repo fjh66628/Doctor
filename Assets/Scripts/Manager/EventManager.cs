@@ -21,7 +21,6 @@ public static class EventManager
 
 
 
-
     public static void CallAddHerbEvent(Herb herb)
     {
         AddHerbEvent?.Invoke(herb);

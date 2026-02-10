@@ -1,86 +1,223 @@
-using System.Collections.Generic;
-using System.Net.Http.Headers;
 using UnityEngine;
-using UnityEngine.UI;
-[System.Serializable]
-class Level
-{
-    List<Illness> illnesses;
-    List<Herb> herbs;
-    List<AssistHerb> assistHerbs;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
-} ;//关卡类
 public class GameManager : MonoBehaviour
 {
-
-    [Header("基于天数的列表数据管理器")]
-    public HerbSQ herbSQ;
-    public AssistHerbSQ assistHerbSQ;
-    public IllnessSQ illnessSQ;
-
-    public int currentDay = -1; // 当前天数，初始值为 -1，表示游戏尚未开始
-
-    // 引用 UI 中的 DayCounter（在 UIManager2.cs 中定义）以保持实时同步
-    private DayCounter uiDayCounter;
-    private InventoryManager inventoryManager;
-
-    private int patients = 2; // 当天总病人数
-    private int patientnow = 3;//当天剩余病人数
-    // 公开方法，用于更新一天的总病人数量并初始化这一天的剩余病人数目
-    public void PatientsToday()
+    // 单例模式
+    public static GameManager Instance { get; private set; }
+    
+    [Header("游戏进度数据")]
+    public int currentDay = 1;
+    public int totalDays = 7;
+    public int curedPatientsCount = 0;
+    public int untreatedPatientsCount = 0;
+    public int failedMedicationCount = 0;
+    public UIManager uiManager;
+    [Header("游戏状态")]
+    public bool isFirstMedicationFailure = true;
+    public bool isGameEnded = false;
+    
+    [Header("事件")]
+    public System.Action OnGameEnd;
+    
+    // 结局类型
+    public enum EndingType
     {
-        patients++;
-        patientnow = patients;
+        GoodEnding,     // 治好多数病人
+        BadEnding,      // 放弃治疗过多
+        NeutralEnding   // 平局
     }
-    //公开方法，用于更新这一天剩余的病人数目
-    public void PatientOver()
-    {
-        patientnow--;
-        Debug.Log($"这一天剩下的病人数: {patients}");
-    }
-    //公开方法
 
-    void Awake()
+    private void Awake()
     {
-        // 查找场景中的 DayCounter 实例
-        uiDayCounter = FindObjectOfType<DayCounter>();
-            inventoryManager = FindObjectOfType<InventoryManager>();
-        if (uiDayCounter == null)
+        // 单例模式实现
+        if (Instance == null)
         {
-            Debug.LogWarning("GameManager: 未找到 DayCounter（UIManager2）实例，currentDay 将不会自动同步。");
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            InitializeGame();
         }
         else
         {
-            // 初始化同步值
-            currentDay = uiDayCounter.GetCurrentDay();
-            illnessSQ.RefreshData(currentDay);
-            assistHerbSQ.RefreshData(currentDay);
-            herbSQ.RefreshData(currentDay);
-            Debug.Log($"GameManager: 已与 UI DayCounter 同步，currentDay={currentDay}");
+            Destroy(gameObject);
         }
-
+    }
+    private void InitializeGame()
+    {
+        currentDay = 1;
+        curedPatientsCount = 0;
+        untreatedPatientsCount = 0;
+        failedMedicationCount = 0;
+        isFirstMedicationFailure = true;
+        isGameEnded = false;
     }
 
-    void Update()
+    private void OnEnable() 
     {
-        // 每帧从 UI 的 DayCounter 读取最新值以保持实时同步
-        if (uiDayCounter != null)
+        EventManager.CureSuccessfullyEvent += OnPatientCuredHandler;
+        EventManager.SkipThePatientEvent += OnPatientUntreatedHandler;
+        EventManager.FailToCureEvent += OnMedicationFailedHandler;
+    }
+    private void OnDisable()
+    {
+        EventManager.CureSuccessfullyEvent -= OnPatientCuredHandler;
+        EventManager.SkipThePatientEvent -= OnPatientUntreatedHandler;
+        EventManager.FailToCureEvent -= OnMedicationFailedHandler;
+    }
+    // ========== 1. 外部访问天数信息的方法 ==========
+    public int GetCurrentDay()
+    {
+        return currentDay;
+    }
+
+    public int GetRemainingDays()
+    {
+        return totalDays - currentDay;
+    }
+
+    public float GetGameProgress()
+    {
+        return (float)currentDay / totalDays;
+    }
+
+    // 进入下一天的方法
+    public void GoToNextDay()
+    {
+        if (isGameEnded) return;
+        
+        currentDay++;
+        EventManager.CallUpdateDay();
+        
+        // 检查是否到达第7天
+        if (currentDay >= totalDays)
         {
-            int uiDay = uiDayCounter.GetCurrentDay();
-            if (currentDay != uiDay)
-            {
-                currentDay = uiDay;
-                // 如需可在此触发其他与天数相关的逻辑
-                illnessSQ.RefreshData(currentDay);
-                assistHerbSQ.RefreshData(currentDay);
-                herbSQ.RefreshData(currentDay);
-                // 更新InventoryManager的数据
-                if (inventoryManager != null)
-                {
-                    inventoryManager.ReloadInventory();
-                }
-                Debug.Log($"GameManager: currentDay 同步为 {currentDay}，已通知 InventoryManager 重新加载");
-            }
+            CheckEnding();
         }
+    }
+
+    public void OnPatientCuredHandler()
+    {
+        curedPatientsCount++;
+    }
+
+    // ========== 3. 放弃治疗事件监听 ==========
+    public void OnPatientUntreatedHandler()
+    {
+        untreatedPatientsCount++;
+    }
+
+    // ========== 4. 给药失败事件监听 ==========
+    public void OnMedicationFailedHandler()
+    {
+        failedMedicationCount++;
+        Debug.Log($"给药失败！失败次数: {failedMedicationCount}");
+        
+        // 如果是第一次失败，显示提示
+        if (isFirstMedicationFailure)
+        {
+            ShowMedicationTip();
+            isFirstMedicationFailure = false;
+        }
+        
+    }
+
+    private void ShowMedicationTip()
+    {
+        // 显示药品属性与病症匹配的提示
+        string tipMessage = "注意：药品的属性需要与病人的病症相匹配！\n";
+        // 这里可以调用UI管理器显示提示
+        uiManager.ShowTip(tipMessage);
+    }
+
+    // ========== 5. 第7天结局判定 ==========
+    private void CheckEnding()
+    {
+        if (isGameEnded) return;
+        
+        isGameEnded = true;
+        EndingType ending = CalculateEnding();
+        
+        Debug.Log($"游戏结束！结局类型: {ending}");
+        
+        // 触发游戏结束事件
+        OnGameEnd?.Invoke();
+        
+        // 进入结算画面
+        StartCoroutine(GoToSettlementScene(ending));
+    }
+
+    private EndingType CalculateEnding()
+    {
+        // 结局判定逻辑
+        float cureRate = (float)curedPatientsCount / (curedPatientsCount + untreatedPatientsCount);
+        
+        if (cureRate >= 0.7f)
+        {
+            return EndingType.GoodEnding;
+        }
+        else if (cureRate <= 0.3f)
+        {
+            return EndingType.BadEnding;
+        }
+        else
+        {
+            return EndingType.NeutralEnding;
+        }
+    }
+
+    private IEnumerator GoToSettlementScene(EndingType ending)
+    {
+        // 等待一帧确保所有操作完成
+        yield return null;
+        
+        // 传递结局信息到结算场景
+        PlayerPrefs.SetString("EndingType", ending.ToString());
+        PlayerPrefs.SetInt("CuredPatients", curedPatientsCount);
+        PlayerPrefs.SetInt("UntreatedPatients", untreatedPatientsCount);
+        
+        // 加载结算场景
+        SceneManager.LoadScene("SettlementScene");
+    }
+
+    // 重新开始游戏
+    public void RestartGame()
+    {
+        InitializeGame();
+        // 重新加载游戏场景或其他初始化操作
+        SceneManager.LoadScene("MainGameScene");
+    }
+
+    // 获取游戏统计信息（用于UI显示）
+    public GameStats GetGameStats()
+    {
+        return new GameStats
+        {
+            currentDay = currentDay,
+            curedPatients = curedPatientsCount,
+            untreatedPatients = untreatedPatientsCount,
+            totalDays = totalDays
+        };
+    }
+}
+
+// 游戏统计数据结构
+public class GameStats
+{
+    public int currentDay;
+    public int curedPatients;
+    public int untreatedPatients;
+    public int totalDays;
+    
+    public int GetTotalPatients()
+    {
+        return curedPatients + untreatedPatients;
+    }
+    
+    public float GetCureRate()
+    {
+        int total = GetTotalPatients();
+        return total > 0 ? (float)curedPatients / total : 0f;
     }
 }

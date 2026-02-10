@@ -9,7 +9,6 @@ public class CraftManager : MonoBehaviour
     [SerializeField]AssistHerbSQ assistHerbs;
     [SerializeField]List<Herb> herbsReadyToCombin;//暂存待合成的草药列表
 
-    [SerializeField]int currentDay = 5;
     [SerializeField]InventoryManager inventoryManager;
     [SerializeField]List<Image> images;
     [SerializeField] MedicineSQ medicineExamples;
@@ -19,25 +18,22 @@ public class CraftManager : MonoBehaviour
     void OnEnable()
     {
         EventManager.SeleckedMainHerb += AddHerbsReadyToCombin;
-
+        EventManager.UpdateDayEvent += CleanCraft;
 
     }
     void OnDisable()
     {
         EventManager.SeleckedMainHerb -= AddHerbsReadyToCombin;
-
+        EventManager.UpdateDayEvent -= CleanCraft;
 
 
     }
     private void Start()
     {
-        if(gameManager != null)
-        {
-
-        }
-        craftSize = GetCraftSize(currentDay);
+        craftSize = GetCraftSize(GameManager.Instance.GetCurrentDay());
 
     }//开始的时候重置各组件状态
+
     void AddHerbsReadyToCombin(int i)
     {
 
@@ -66,7 +62,8 @@ public class CraftManager : MonoBehaviour
         herbsReadyToCombin[0] = null;
         herbsReadyToCombin[1] = null;
         herbsReadyToCombin[2] = null;
-        ImageUpDate();
+        craftSize = GetCraftSize(GameManager.Instance.GetCurrentDay());
+        ImageUpDate(); 
         EventManager.CallMedicineInventoryUPdate();
     }//清理合成台(所有类的【0】都是空，即基本对象)
     public void ComplitCombination()
