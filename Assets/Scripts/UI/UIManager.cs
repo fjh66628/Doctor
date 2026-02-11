@@ -12,7 +12,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] float tipDuration = 2f; // 提示显示时长
     private float tipTimer = 0f;
     private bool isShowingTip = false;
-    
+    void Start()
+    {
+        tipBackground.gameObject.SetActive(false);
+    }
     public void ShowTip(string message)
     {
         tipBackground.gameObject.SetActive(true);

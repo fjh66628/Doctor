@@ -31,14 +31,14 @@ public class CraftManager : MonoBehaviour
     private void Start()
     {
         craftSize = GetCraftSize(GameManager.Instance.GetCurrentDay());
-
+        CleanCraft();
     }//开始的时候重置各组件状态
 
-    void AddHerbsReadyToCombin(int i)
+    void AddHerbsReadyToCombin(Herb herb)
     {
 
-        herbsReadyToCombin[HRTindex] = inventoryManager.GetHerb(i);
-        images[HRTindex].sprite = herbsReadyToCombin[i].getHerbSprite;
+        herbsReadyToCombin[HRTindex] = herb;
+        images[HRTindex].sprite = herb.getHerbSprite;
         HRTindex++;
         HRTindex %= craftSize;
     }
@@ -65,35 +65,44 @@ public class CraftManager : MonoBehaviour
         craftSize = GetCraftSize(GameManager.Instance.GetCurrentDay());
         ImageUpDate(); 
         EventManager.CallMedicineInventoryUPdate();
-    }//清理合成台(所有类的【0】都是空，即基本对象)
+    }
     public void ComplitCombination()
     {
         int count = 0;
         int medicineOutWound=0;
         int medicineInternalWound=0;
+        int mindWound = 0;
         for (int i = 0; i < 3; i++)
         {
-            if (herbsReadyToCombin[i].getHerbName != "空")
+            if (herbsReadyToCombin[i] != null)
             {
                 count++;
+                Debug.Log(count+ "正在计算");
                 medicineOutWound += herbsReadyToCombin[i].getOutsideWound;
                 medicineInternalWound += herbsReadyToCombin[i].getInternalWound;
+                mindWound += herbsReadyToCombin[i].getMindWound;
             }
-            herbsReadyToCombin[i] = mainHerbs.getHerbList[0];
+
         }
         if (count > 0)
         {
+            Debug.Log(count);
             medicineInternalWound /= count;
             medicineOutWound /= count;
+            mindWound /= count;
         }
         Medicine medicine = new Medicine(); 
         medicine.ChangeInternalWound(medicineInternalWound);
         medicine.ChangeOutsideWound(medicineOutWound);
+        medicine.ChangeMindWound(mindWound);
         medicine.ChangeSprite(medicineExamples.getMedicinesList[count].getMedicineSprite);//从1开始后是药品样例
         medicine.ChangeName(medicineExamples.getMedicinesList[count].getMedicineName);
         medicine.ChangeDetail();
         if(count > 0)
+        {
             inventoryManager.AddComebineMedicine(medicine);
+        }
+        CleanCraft();
         EventManager.CallMedicineInventoryUPdate();
         ImageUpDate();
 
@@ -102,7 +111,7 @@ public class CraftManager : MonoBehaviour
     {
         for (int i = 0; i < 3; i++) 
         {
-            if(herbsReadyToCombin[i] != null)
+            if(herbsReadyToCombin[i] != null && herbsReadyToCombin[i].getHerbSprite != null)
                 images[i].sprite = herbsReadyToCombin[i].getHerbSprite;
         }
     }//点击按钮传入图标

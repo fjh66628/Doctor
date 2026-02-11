@@ -41,7 +41,7 @@ public class DayCounter : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("DayCounter Start - 初始化");
+
         InitializeUI();
         UpdateDayText();
         SetHiddenUIsVisible(false);
@@ -329,7 +329,7 @@ public class DayCounter : MonoBehaviour
 
     private void SetHiddenUIsVisible(bool visible)
     {
-        Debug.Log($"设置隐藏UI可见性: {visible}");
+
 
         SetUIVisible(hiddenImage1, visible);
         SetUIVisible(hiddenImage2, visible);
@@ -421,14 +421,13 @@ public class DayCounter : MonoBehaviour
         if (dayText != null)
         {
             dayText.text = "Day " + currentDay;
-            Debug.Log($"更新显示文本: Day {currentDay}");
+
         }
     }
 
     public void ResetCounter()
     {
-        Debug.Log("=== 重置计数器 ===");
-        Debug.Log($"重置前天数: {currentDay}");
+
 
         currentDay = 1;
         UpdateDayText();
@@ -437,13 +436,12 @@ public class DayCounter : MonoBehaviour
         SetMainUIInteractable(true);
         SetAllUIsDark();
 
-        Debug.Log($"重置后天数: {currentDay}");
     }
 
     public void SetResetOnEsc(bool enable)
     {
         resetOnEsc = enable;
-        Debug.Log($"设置ESC功能: {enable}");
+
     }
 
     public int GetCurrentDay()

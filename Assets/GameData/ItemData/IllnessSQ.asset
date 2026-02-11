@@ -13,39 +13,33 @@ MonoBehaviour:
   m_Name: IllnessSQ
   m_EditorClassIdentifier: 
   illnessList:
-  - illnessName: "\u611F\u5192"
-    illnessDetail: "\u75C7\u72B6\uFF1A\u54B3\u55FD\u3001\u6D41\u9F3B\u6D95\u3001\u5934\u75DB"
+  - illnessName: "\u64E6\u4F24"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u8F7B\u5FAE\u6D41\u8840"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 1
+    spiritWound: 1
+  - illnessName: "\u708E\u75C7"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u8179\u75DB"
     illnessSprite: {fileID: 0}
     insideWound: 1
-    outsideWound: 2
-    spiritWound: 3
-  - illnessName: "\u53D1\u70E7"
-    illnessDetail: "\u75C7\u72B6\uFF1A\u54B3\u55FD\u3001\u6D41\u9F3B\u6D95\u3001\u5934\u75DB"
+    outsideWound: 8
+    spiritWound: 1
+  - illnessName: "\u708E\u75C7"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u8179\u75DB"
     illnessSprite: {fileID: 0}
-    insideWound: 2
-    outsideWound: 3
-    spiritWound: 4
-  - illnessName: "\u5D34\u811A"
-    illnessDetail: "\u75C7\u72B6\uFF1A"
+    insideWound: 1
+    outsideWound: 8
+    spiritWound: 1
+  - illnessName: "\u5931\u7720"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7CBE\u795E\u75B2\u60EB"
     illnessSprite: {fileID: 0}
-    insideWound: 5
-    outsideWound: 5
-    spiritWound: 5
+    insideWound: 1
+    outsideWound: 1
+    spiritWound: 8
   - illnessName: "\u9AA8\u6298"
-    illnessDetail: "\u75C7\u72B6\uFF1A"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u5267\u70C8\u75BC\u75DB"
     illnessSprite: {fileID: 0}
-    insideWound: 6
-    outsideWound: 6
-    spiritWound: 6
-  - illnessName: "\u4E2D\u6BD2"
-    illnessDetail: "\u75C7\u72B6\uFF1A"
-    illnessSprite: {fileID: 0}
-    insideWound: 2
+    insideWound: 7
     outsideWound: 2
-    spiritWound: 2
-  - illnessName: "\u64E6\u4F24"
-    illnessDetail: "\u75C7\u72B6\uFF1A"
-    illnessSprite: {fileID: 0}
-    insideWound: 3
-    outsideWound: 3
-    spiritWound: 3
+    spiritWound: 1

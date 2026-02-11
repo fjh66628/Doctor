@@ -31,11 +31,7 @@ public class IllnessSQ : ScriptableObject
     Illness P=new Illness("传染病","症状：易传播",null,8,6,3);
     Illness Q=new Illness("职业病","症状：特定症状",null,6,5,7);
     
-    void Awake()
-    {
-        // 在游戏开始时初始化疾病数据
-        RefreshData(1); // 假设从第一天开始
-    }
+
 
     public void RefreshData(int day)
     {

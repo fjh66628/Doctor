@@ -21,28 +21,33 @@ public class Patient : MonoBehaviour
     public float insidewoundnum = 0f;
     public float outsidewoundnum = 0f;
     public float spiritwoundnum = 0f;
-
+    int currentDay;
+    int currentPatient;
+    void OnEnable()
+    {
+        EventManager.CureSuccessfullyEvent += GetSick;
+        EventManager.UpdateDayEvent += RefreshData;
+    }
+    void OnDisable()
+    {
+        EventManager.CureSuccessfullyEvent -= GetSick;
+        EventManager.UpdateDayEvent -= RefreshData;
+    }
     private void Start()
     {
-        // 从 IllnessSQ 中随机获取一个疾病
-        if (illnessSQ != null && illnessSQ.getIllnessList.Count > 0)
-        {
-            int randomIndex = Random.Range(0, illnessSQ.getIllnessList.Count);
-            currentIllness = illnessSQ.getIllnessList[randomIndex];
-            
-            // 将疾病的症状值赋给患者
-            insidewoundnum = currentIllness.getInsideWound;
-            outsidewoundnum = currentIllness.getOutsideWound;
-            spiritwoundnum = currentIllness.getSpiritWound;
-            
-            Debug.Log($"患者患上了: {currentIllness.getIllnessName}");
-        }
-        else
-        {
-            Debug.LogWarning("illnessSQ 未设置或无疾病数据");
-        }
+        illnessSQ.getIllnessList.Clear();
+        RefreshData();
+        GetSick();
     }
-
+    public void GetSick()
+    {
+        currentDay = GameManager.Instance.GetCurrentDay();
+        currentPatient = GameManager.Instance.GetGameStats().curedPatients;
+        currentIllness = illnessSQ.getIllnessList[currentPatient];
+        insidewoundnum = currentIllness.getInsideWound;
+        outsidewoundnum = currentIllness.getOutsideWound;
+        spiritwoundnum = currentIllness.getSpiritWound;
+    }//获取疾病数据
     private void Update()
     {
         // 更新显示文本，实时反映症状值
@@ -55,7 +60,10 @@ public class Patient : MonoBehaviour
         if (Name_Text != null && currentIllness != null)
             Name_Text.text = $"{currentIllness.getIllnessName}";
     }
-
+    void RefreshData()
+    {
+        illnessSQ.RefreshData(GameManager.Instance.GetCurrentDay());
+    }
     // 应用药剂，当某个数值被减到小于零时拒绝给药
     public void ApplyMedicine(Medicine medicine)
     {
@@ -71,7 +79,7 @@ public class Patient : MonoBehaviour
         ReduceInsideWound(medicine.getInsideWound);
         ReduceOutsideWound(medicine.getOutsideWound);
         ReduceSpriteWound(medicine.getMindWound);
-
+        EventManager.CallCureSuccess();
         Debug.Log($"应用了药剂: {medicine.getMedicineName}");
     }
 

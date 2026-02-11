@@ -1,65 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 [CreateAssetMenu(fileName = "HerbSQ", menuName = "Game Data/Herbs")]
 public class HerbSQ : ScriptableObject
 {
     [SerializeField] private List<Herb> herbList = new List<Herb>();
     
-    // 通过属性公开列表，以便在其他脚本中访问
     public List<Herb> getHerbList => herbList;
-
-    Herb a=new Herb("金银花","效果：缓解内伤",null,8,1,1);
-    Herb b=new Herb("蒲公英","效果：缓解外伤",null,7,2,1);
-    Herb c=new Herb("酸枣仁","效果：缓解精神伤害",null,7,1,2);
-    Herb a1=new Herb("当归","效果：缓解内伤",null,1,8,1);
-    Herb b1=new Herb("紫草","效果：缓解外伤",null,2,7,1);
-    Herb c1=new Herb("远志","效果：缓解精神伤害",null,1,7,2);
-    Herb a2=new Herb("黄芪","效果：增强免疫力",null,1,1,8);
-    Herb b2=new Herb("川芎","效果：活血化瘀",null,1,2,7);
-    Herb c2=new Herb("甘草","效果：调和诸药",null,2,1,7);
-    Herb a3=new Herb("人参","效果：大补元气",null,5,5,0);
-    Herb b3=new Herb("白芍","效果：缓解疼痛",null,5,0,5);
-    Herb c3=new Herb("茯苓","效果：利水渗湿",null,0,5,5);
-
-    void Awake()
-    {
-        // 在游戏开始时初始化药草数据
-        RefreshData(1); // 假设从第一天开始
-    }
+    
+    // 移除了所有草药实例声明
+    // Herb a = new Herb(...); // 删除这些
+    
+    // 修改RefreshData方法，使用预制数据
     public void RefreshData(int day)
     {
+        // 注意：由于ScriptableObject是持久化的，我们需要重新创建列表
+        // 避免在运行时修改原始数据
+        
+        // 临时列表，用于存储当前天数解锁的草药
+        var tempList = new List<Herb>();
+        
         if (day == 1)
         {
-            if(herbList.Count>0)
-                herbList.Clear();
-
-            herbList.Add(a);
-            herbList.Add(a1);
-            herbList.Add(a2);
+            // 第一天解锁的草药
+            tempList.Add(CreateHerb("金银花", "效果：缓解内伤", 8, 1, 1));
+            tempList.Add(CreateHerb("当归", "效果：缓解内伤", 1, 8, 1));
+            tempList.Add(CreateHerb("黄芪", "效果：增强免疫力", 1, 1, 8));
         }
         else if (day == 2)
         {
-            herbList.Add(b);
-            herbList.Add(b1);
-            herbList.Add(b2);
+            // 第二天增加的草药
+            tempList.Add(CreateHerb("蒲公英", "效果：缓解外伤", 7, 2, 1));
+            tempList.Add(CreateHerb("紫草", "效果：缓解外伤", 2, 7, 1));
+            tempList.Add(CreateHerb("川芎", "效果：活血化瘀", 1, 2, 7));
         }
         else if (day == 3)
         {
-            herbList.Add(c);
-            herbList.Add(c1);
+            tempList.Add(CreateHerb("酸枣仁", "效果：缓解精神伤害", 7, 1, 2));
+            tempList.Add(CreateHerb("远志", "效果：缓解精神伤害", 1, 7, 2));
         }
         else if (day == 4)
         {
-            herbList.Add(c2);
+            tempList.Add(CreateHerb("甘草", "效果：调和诸药", 2, 1, 7));
         }
         else if (day == 5)
         {
-            herbList.Add(a3);
-            herbList.Add(b3);
-            herbList.Add(c3);
+            tempList.Add(CreateHerb("人参", "效果：大补元气", 5, 5, 0));
+            tempList.Add(CreateHerb("白芍", "效果：缓解疼痛", 5, 0, 5));
+            tempList.Add(CreateHerb("茯苓", "效果：利水渗湿", 0, 5, 5));
         }
-        // 此方法可用于在游戏开始时初始化或刷新药草数据
+        
+        // 将结果赋给herbList
+        herbList.Clear();
+        herbList.AddRange(tempList);
+        
         Debug.Log("HerbSQ: 数据已刷新，当前药草数量：" + herbList.Count);
+    }
+    
+    // 辅助方法：创建Herb实例
+    private Herb CreateHerb(string name, string detail, int inside, int outside, int mental)
+    {
+        return new Herb(name, detail, null, inside, outside, mental);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class InventoryManager : MonoBehaviour
 {
-    public GameManager gameManager;//传入gamemanager
+
     [Header("传入药草数据")]
     [SerializeField]private HerbSQ herbData;
     [Header("传入药物数据")]
@@ -16,11 +16,13 @@ public class InventoryManager : MonoBehaviour
     {
         EventManager.AddHerbEvent += AddHerb;
         EventManager.AddMedicineEvent += AddMedicine;
+        EventManager.UpdateDayEvent += UpDateInventory;
     }
     void OnDisable()
     {
         EventManager.AddHerbEvent -= AddHerb;
         EventManager.AddMedicineEvent -= AddMedicine;
+        EventManager.UpdateDayEvent -= UpDateInventory;
     }//仓库增加物品事件
     [Header("草药仓库数据")]
     [SerializeField]List<Herb> herbInventory = new List<Herb>();
@@ -31,19 +33,54 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]AssistHerb assistHerb;//桌子上的副药
     void Start()
     {
+        herbData.getHerbList.Clear();
+        assistHerbData.getAssistHerbList.Clear();
         UpDateInventory();
     }
     public void UpDateInventory()
     {
-        if(assistHerbInventory == null)
-            Debug.LogWarning("未完成仓库更新逻辑");
-
-
-
+        herbData.RefreshData(GameManager.Instance.GetCurrentDay());
+        assistHerbData.RefreshData(GameManager.Instance.GetCurrentDay());
+        LoadInventory();
 
         EventManager.CallMedicineInventoryUPdate();
         EventManager.CallHerbInventoryUpdate();//更新UI
     }
+    void LoadInventory()
+    {
+        
+        // 检查数据源是否存在
+        if (herbData != null && herbData.getHerbList != null)
+        {
+            // 从 HerbSQ 读取数据到 herbInventory
+            foreach (var herb in herbData.getHerbList)
+            {
+
+                herbInventory.Add(herb);
+            }
+            
+
+        }
+        else
+        {
+            Debug.LogWarning("HerbSQ 数据源为空或未分配");
+        }
+        
+        if (assistHerbData != null && assistHerbData.getAssistHerbList != null)
+        {
+            // 从 AssistHerbSQ 读取数据到 assistHerbInventory
+            foreach (var assistHerb in assistHerbData.getAssistHerbList)
+            {
+                assistHerbInventory.Add(assistHerb);
+            }
+
+        }
+        else
+        {
+            Debug.LogWarning("AssistHerbSQ 数据源为空或未分配");
+        }
+    }
+
     public void ReloadInventory()
     {
         // 清空已有仓库数据
@@ -116,11 +153,9 @@ public class InventoryManager : MonoBehaviour
     }
     public void AddComebineMedicine(Medicine medicine)
     {
-        if (medicineInventory.getMedicineName == "空")
-        {
-            medicineInventory = medicine;
-            return;
-        }
+        
+        medicineInventory = medicine;
+
     }
     public AssistHerb GetAssistHerb()
     {

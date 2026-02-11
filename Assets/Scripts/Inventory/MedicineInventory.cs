@@ -19,7 +19,7 @@ public class MedicineInventory : MonoBehaviour
     [SerializeField]TextMeshProUGUI medicineText;//传入按钮的文本
     public Patient patient;//对应的病人实例
     int lastIndex = -1;
-    int selectedIndex = -1; //当前被选中的药物索引
+    bool isClicked = false;
     void OnEnable()
     {
         EventManager.MedicineInventoryUpdateEvent += UpdateUI;
@@ -31,7 +31,8 @@ public class MedicineInventory : MonoBehaviour
 
     void UpdateUI()
     {
-        medicineButton.image.sprite = inventoryManager.GetMedicine().getMedicineSprite;
+        if(inventoryManager.GetMedicine().getMedicineSprite != null)
+            medicineButton.image.sprite = inventoryManager.GetMedicine().getMedicineSprite;
         medicineText.text = inventoryManager.GetMedicine().getMedicineName;
         if(inventoryManager.GetAssistHerb() != null)
         {
@@ -52,7 +53,7 @@ public class MedicineInventory : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Z))
         {
             detailUI.gameObject.SetActive(false);
-            selectedIndex = -1; //取消选择
+
         }
     }//当Z键按下后或X键按下后
     
@@ -60,9 +61,9 @@ public class MedicineInventory : MonoBehaviour
     // 使用选中的药物给患者
     public void UseMedicineOnPatient()
     { 
-        if(selectedIndex == -1 || patient == null)
+        if(patient == null)
         {
-            Debug.LogWarning("未选择药物或患者不存在");
+            Debug.LogWarning("患者不存在");
             return;
         }
         
@@ -79,9 +80,6 @@ public class MedicineInventory : MonoBehaviour
             Debug.Log($"给患者使用了药物: {selectedMedicine.getMedicineName}");
             inventoryManager.DeleteMedicine();
             inventoryManager.DeleteAssistHerb();
-            // 使用后隐藏详情面板并取消选择
-            detailUI.gameObject.SetActive(false);
-            selectedIndex = -1;
         }
     }
     public void OnClickButton(int i)
@@ -92,13 +90,11 @@ public class MedicineInventory : MonoBehaviour
             medicineName.text = inventoryManager.GetMedicine().getMedicineName;
             medicineDetail.text = inventoryManager.GetMedicine().getMedicineDetail;
             lastIndex = i;
-            selectedIndex = i; //更新当前选中的药物
         }
         else
         {
             detailUI.gameObject.SetActive(false);
             lastIndex = -1;
-            selectedIndex = -1; //取消选择
         }
 
     }//点击，选中的逻辑
@@ -114,12 +110,21 @@ public class MedicineInventory : MonoBehaviour
     {
         if(inventoryManager.GetMedicine() != null)
         {
-            detailUI.gameObject.SetActive(true);
-            medicineName.text = "复方药剂";
-            int mindCure = inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getMindWound + inventoryManager.GetMedicine().getMindWound;
-            int outCure = inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getOutsideWound + inventoryManager.GetMedicine().getOutsideWound;
-            int insideCure = inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getInternalWound + inventoryManager.GetMedicine().getInsideWound;
-            medicineDetail.text = $"内伤-{insideCure}\n外伤-{outCure}\n精神伤-{mindCure}"; 
+            if(!isClicked)
+            {   
+                detailUI.gameObject.SetActive(true);
+                medicineName.text = "复方药剂";
+                int mindCure = inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getMindWound + inventoryManager.GetMedicine().getMindWound;
+                int outCure = inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getOutsideWound + inventoryManager.GetMedicine().getOutsideWound;
+                int insideCure = inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getInternalWound + inventoryManager.GetMedicine().getInsideWound;
+                medicineDetail.text = $"内伤-{insideCure}\n外伤-{outCure}\n精神伤-{mindCure}";
+                isClicked = !isClicked;
+            }
+            else
+            {
+                detailUI.gameObject.SetActive(false);
+                isClicked = !isClicked;
+            }
         }
     }
 }

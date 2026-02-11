@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        EventManager.CallUpdateDay();
     }
     private void InitializeGame()
     {
@@ -100,6 +101,10 @@ public class GameManager : MonoBehaviour
     public void OnPatientCuredHandler()
     {
         curedPatientsCount++;
+        if(curedPatientsCount == 2 || curedPatientsCount == 5 || curedPatientsCount == 9 || curedPatientsCount == 14 || curedPatientsCount == 20 || curedPatientsCount == 27)
+        {
+            GoToNextDay();
+        }
     }
 
     // ========== 3. 放弃治疗事件监听 ==========
@@ -112,7 +117,6 @@ public class GameManager : MonoBehaviour
     public void OnMedicationFailedHandler()
     {
         failedMedicationCount++;
-        Debug.Log($"给药失败！失败次数: {failedMedicationCount}");
         
         // 如果是第一次失败，显示提示
         if (isFirstMedicationFailure)
@@ -141,8 +145,7 @@ public class GameManager : MonoBehaviour
         
         Debug.Log($"游戏结束！结局类型: {ending}");
         
-        // 触发游戏结束事件
-        OnGameEnd?.Invoke();
+
         
         // 进入结算画面
         StartCoroutine(GoToSettlementScene(ending));
