@@ -17,12 +17,14 @@ public class InventoryManager : MonoBehaviour
         EventManager.AddHerbEvent += AddHerb;
         EventManager.AddMedicineEvent += AddMedicine;
         EventManager.UpdateDayEvent += UpDateInventory;
+        EventManager.SeleckedAssistHerb += AddAssistherb;
     }
     void OnDisable()
     {
         EventManager.AddHerbEvent -= AddHerb;
         EventManager.AddMedicineEvent -= AddMedicine;
         EventManager.UpdateDayEvent -= UpDateInventory;
+        EventManager.SeleckedAssistHerb -= AddAssistherb;
     }//仓库增加物品事件
     [Header("草药仓库数据")]
     [SerializeField]List<Herb> herbInventory = new List<Herb>();
@@ -165,4 +167,8 @@ public class InventoryManager : MonoBehaviour
     {
         assistHerb = null;
     }//删除桌子上的副药
+    void AddAssistherb(AssistHerb herb)
+    {
+        assistHerb = herb;
+    }
 }

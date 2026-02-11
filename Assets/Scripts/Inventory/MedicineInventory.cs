@@ -114,9 +114,9 @@ public class MedicineInventory : MonoBehaviour
             {   
                 detailUI.gameObject.SetActive(true);
                 medicineName.text = "复方药剂";
-                int mindCure = inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getMindWound + inventoryManager.GetMedicine().getMindWound;
-                int outCure = inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getOutsideWound + inventoryManager.GetMedicine().getOutsideWound;
-                int insideCure = inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getInternalWound + inventoryManager.GetMedicine().getInsideWound;
+                int mindCure = (inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getMindWound) + inventoryManager.GetMedicine().getMindWound;
+                int outCure = (inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getOutsideWound) + inventoryManager.GetMedicine().getOutsideWound;
+                int insideCure = (inventoryManager.GetAssistHerb() == null? 0:inventoryManager.GetAssistHerb().getInternalWound) + inventoryManager.GetMedicine().getInsideWound;
                 medicineDetail.text = $"内伤-{insideCure}\n外伤-{outCure}\n精神伤-{mindCure}";
                 isClicked = !isClicked;
             }

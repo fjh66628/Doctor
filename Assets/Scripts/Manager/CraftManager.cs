@@ -12,7 +12,7 @@ public class CraftManager : MonoBehaviour
     [SerializeField]InventoryManager inventoryManager;
     [SerializeField]List<Image> images;
     [SerializeField] MedicineSQ medicineExamples;
-    [SerializeField]GameManager gameManager;
+
     int craftSize;
     int HRTindex= 0 ;//暂存待合成的草药列表指数
     void OnEnable()
