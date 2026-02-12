@@ -2,12 +2,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     // 单例模式
     public static GameManager Instance { get; private set; }
-    
+    public TextMeshProUGUI text;
     [Header("游戏进度数据")]
     public int currentDay = 1;
     public int totalDays = 7;
@@ -30,6 +31,12 @@ public class GameManager : MonoBehaviour
         NeutralEnding   // 平局
     }
 
+    void Start()
+    {
+        currentDay = 1;
+
+        Tips();
+    }
     private void Awake()
     {
         // 单例模式实现
@@ -60,6 +67,7 @@ public class GameManager : MonoBehaviour
         EventManager.CureSuccessfullyEvent += OnPatientCuredHandler;
         EventManager.SkipThePatientEvent += OnPatientUntreatedHandler;
         EventManager.FailToCureEvent += OnMedicationFailedHandler;
+
     }
     private void OnDisable()
     {
@@ -90,6 +98,7 @@ public class GameManager : MonoBehaviour
         
         currentDay++;
         EventManager.CallUpdateDay();
+        Tips();
         
         // 检查是否到达第7天
         if (currentDay >= totalDays)
@@ -97,7 +106,7 @@ public class GameManager : MonoBehaviour
             CheckEnding();
         }
     }
-
+    
     public void OnPatientCuredHandler()
     {
         curedPatientsCount++;
@@ -106,7 +115,17 @@ public class GameManager : MonoBehaviour
             GoToNextDay();
         }
     }
-
+    void Tips()
+    {
+        switch(currentDay)
+        {
+            case 1:uiManager.ShowTip("进入第一天：双击药物加入合成台制药");return;
+            case 2:uiManager.ShowTip("");return;
+            case 4:uiManager.ShowTip("");return;
+            case 5:uiManager.ShowTip("");return;
+            case 6:uiManager.ShowTip("");return;
+        }
+    }
     // ========== 3. 放弃治疗事件监听 ==========
     public void OnPatientUntreatedHandler()
     {
@@ -124,7 +143,7 @@ public class GameManager : MonoBehaviour
             ShowMedicationTip();
             isFirstMedicationFailure = false;
         }
-        
+        text.text = $"错误次数 {failedMedicationCount}";
     }
 
     private void ShowMedicationTip()

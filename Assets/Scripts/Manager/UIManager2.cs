@@ -542,12 +542,6 @@ public class DayCounter : MonoBehaviour
 
     }
 
-    public int GetCurrentDay()
-    {
-        return currentDay;
-    }//获取当前天数
-
-
     
 
 }

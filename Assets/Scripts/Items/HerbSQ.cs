@@ -10,9 +10,6 @@ public class HerbSQ : ScriptableObject
     
     public List<Herb> getHerbList => herbList;
     
-    // 移除了所有草药实例声明
-    // Herb a = new Herb(...); // 删除这些
-    
     // 修改RefreshData方法，使用预制数据
     public void RefreshData(int day)
     {
@@ -56,7 +53,7 @@ public class HerbSQ : ScriptableObject
         herbList.Clear();
         herbList.AddRange(tempList);
         
-        Debug.Log("HerbSQ: 数据已刷新，当前药草数量：" + herbList.Count);
+
     }
     
     // 辅助方法：创建Herb实例

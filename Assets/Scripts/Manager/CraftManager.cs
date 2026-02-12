@@ -113,6 +113,8 @@ public class CraftManager : MonoBehaviour
         {
             if(herbsReadyToCombin[i] != null && herbsReadyToCombin[i].getHerbSprite != null)
                 images[i].sprite = herbsReadyToCombin[i].getHerbSprite;
+            else
+                images[i].sprite = null;
         }
     }//点击按钮传入图标
 }

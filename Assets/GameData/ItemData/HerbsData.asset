@@ -13,28 +13,34 @@ MonoBehaviour:
   m_Name: HerbsData
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: e421a9582c413f345862685da71f7e40, type: 3}
+  - {fileID: 21300000, guid: ef48d8ac14c3e4e468524574d30559bd, type: 3}
+  - {fileID: 21300000, guid: 2c2df9a7054008d4a8a8b29a417f26e5, type: 3}
+  - {fileID: 21300000, guid: 332a574d9b5c4d1439af965a3d992377, type: 3}
+  - {fileID: 21300000, guid: 154b03b0749be7a4586c31f5f707a9ed, type: 3}
+  - {fileID: 21300000, guid: e421a9582c413f345862685da71f7e40, type: 3}
+  - {fileID: 21300000, guid: ef48d8ac14c3e4e468524574d30559bd, type: 3}
+  - {fileID: 21300000, guid: 2c2df9a7054008d4a8a8b29a417f26e5, type: 3}
+  - {fileID: 21300000, guid: 332a574d9b5c4d1439af965a3d992377, type: 3}
+  - {fileID: 21300000, guid: 154b03b0749be7a4586c31f5f707a9ed, type: 3}
+  - {fileID: 21300000, guid: e421a9582c413f345862685da71f7e40, type: 3}
+  - {fileID: 21300000, guid: ef48d8ac14c3e4e468524574d30559bd, type: 3}
   herbList:
-  - herbName: "\u9178\u67A3\u4EC1"
-    herbDetail: "\u6548\u679C\uFF1A\u7F13\u89E3\u7CBE\u795E\u4F24\u5BB3"
-    herbSprite: {fileID: 0}
-    mindWound: 2
+  - herbName: "\u91D1\u94F6\u82B1"
+    herbDetail: "\u6548\u679C\uFF1A\u7F13\u89E3\u5185\u4F24\n\u5185\u4F248\n\u5916\u4F241\n\u7CBE\u795E\u4F241\n"
+    herbSprite: {fileID: 21300000, guid: e421a9582c413f345862685da71f7e40, type: 3}
+    mindWound: 1
     outsideWound: 1
-    internalWound: 7
-  - herbName: "\u8FDC\u5FD7"
-    herbDetail: "\u6548\u679C\uFF1A\u7F13\u89E3\u7CBE\u795E\u4F24\u5BB3"
-    herbSprite: {fileID: 0}
-    mindWound: 2
-    outsideWound: 7
+    internalWound: 8
+  - herbName: "\u5F53\u5F52"
+    herbDetail: "\u6548\u679C\uFF1A\u7F13\u89E3\u5185\u4F24\n\u5185\u4F241\n\u5916\u4F248\n\u7CBE\u795E\u4F241\n"
+    herbSprite: {fileID: 21300000, guid: ef48d8ac14c3e4e468524574d30559bd, type: 3}
+    mindWound: 1
+    outsideWound: 8
+    internalWound: 1
+  - herbName: "\u9EC4\u82AA"
+    herbDetail: "\u6548\u679C\uFF1A\u589E\u5F3A\u514D\u75AB\u529B\n\u5185\u4F241\n\u5916\u4F241\n\u7CBE\u795E\u4F248\n"
+    herbSprite: {fileID: 21300000, guid: 2c2df9a7054008d4a8a8b29a417f26e5, type: 3}
+    mindWound: 8
+    outsideWound: 1
     internalWound: 1

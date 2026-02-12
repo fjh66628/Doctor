@@ -61,8 +61,7 @@ public class MainHerbInventory : MonoBehaviour
         
         // 获取主草药数量
         int herbCount = inventoryManager.GetHerbCount();
-        
-        Debug.Log($"[MainHerbInventory] Creating {herbCount} herb buttons");
+
         
         // 生成主草药按钮
         for (int i = 0; i < herbCount; i++)

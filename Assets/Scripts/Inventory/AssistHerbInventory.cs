@@ -97,7 +97,7 @@ public class AssistHerbInventory : MonoBehaviour
         // 如果没有辅助草药，直接返回
         if (assistHerbCount <= 0)
         {
-            Debug.Log($"[AssistHerbInventory] 没有辅助草药可显示");
+
             return;
         }
         

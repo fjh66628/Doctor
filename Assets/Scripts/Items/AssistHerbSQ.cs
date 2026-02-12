@@ -34,6 +34,12 @@ public class AssistHerbSQ : ScriptableObject
             J.ChangeDetail();
             K.ChangeDetail();
             L.ChangeDetail();
+            G.ChangeSprite(sprites[6]);
+            H.ChangeSprite(sprites[7]);
+            I.ChangeSprite(sprites[8]);
+            J.ChangeSprite(sprites[9]);
+            K.ChangeSprite(sprites[10]);
+            L.ChangeSprite(sprites[11]);
     }
     public void RefreshData(int day)
     {
