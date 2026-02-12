@@ -24,6 +24,12 @@ public class GameManager : MonoBehaviour
     public System.Action OnGameEnd;
     
     // 结局类型
+
+    public Scene settlementScene;
+    [Header("结局场景名称")]
+    public string goodEndingSceneName = "GoodEndingScene";
+    public string badEndingSceneName = "BadEndingScene";
+    public string neutralEndingSceneName = "NeutralEndingScene";
     public enum EndingType
     {
         GoodEnding,     // 治好多数病人
@@ -98,6 +104,8 @@ public class GameManager : MonoBehaviour
         
         currentDay++;
         EventManager.CallUpdateDay();
+
+        uiManager.ShowTip($"进入第{currentDay}天");
         Tips();
         
         // 检查是否到达第7天
@@ -164,8 +172,6 @@ public class GameManager : MonoBehaviour
         
         Debug.Log($"游戏结束！结局类型: {ending}");
         
-
-        
         // 进入结算画面
         StartCoroutine(GoToSettlementScene(ending));
     }
@@ -199,8 +205,12 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("CuredPatients", curedPatientsCount);
         PlayerPrefs.SetInt("UntreatedPatients", untreatedPatientsCount);
         
-        // 加载结算场景
-        SceneManager.LoadScene("SettlementScene");
+        // 根据结局加载对应的场景
+        string sceneToLoad = "Ending-normal";
+        if (ending == EndingType.GoodEnding) sceneToLoad = "Ending-good";
+        else if (ending == EndingType.BadEnding) sceneToLoad = "Ending-bad";
+
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     // 重新开始游戏

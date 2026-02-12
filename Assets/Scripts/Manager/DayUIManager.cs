@@ -39,6 +39,7 @@ public class DayUIManager : MonoBehaviour
         }
         else
         {
+            dayText.text = "第1天";
             dayText.text = "第1天 1/7";
         }
     }
