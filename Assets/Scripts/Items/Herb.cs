@@ -35,6 +35,6 @@ public class Herb
         { internalWound = wound; }
     public void ChangeOutsideWound(int wound) { outsideWound = wound; }
     public void ChangeName(string name) { herbName = name; }
-    public void ChangeDetail() { herbDetail = "外伤" + outsideWound + "\n" + "内伤" + internalWound + "\n"; }
+    public void ChangeDetail() { herbDetail = herbDetail +"\n内伤" + internalWound +  "\n"+"外伤" + outsideWound + "\n" +  "精神伤" + mindWound +"\n"; }
     public void ChangeSprite(Sprite sprite) { herbSprite = sprite; }
 }

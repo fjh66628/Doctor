@@ -18,7 +18,6 @@ public class MedicineInventory : MonoBehaviour
     [SerializeField]TextMeshProUGUI assistHerbText;
     [SerializeField]TextMeshProUGUI medicineText;//传入按钮的文本
     public Patient patient;//对应的病人实例
-    int lastIndex = -1;
     bool isClicked = false;
     void OnEnable()
     {
@@ -38,6 +37,11 @@ public class MedicineInventory : MonoBehaviour
         {
             assistButton.image.sprite = inventoryManager.GetAssistHerb().getAssistHerbSprite;
             assistHerbText.text = inventoryManager.GetAssistHerb().getAssistHerbName;
+        }
+        else
+        {
+            assistButton.image.sprite = null;
+            assistHerbText.text = null;
         }
     }//仓库更新的时候更新UI
 
@@ -77,27 +81,12 @@ public class MedicineInventory : MonoBehaviour
                 selectedMedicine.ChangeMindWound(selectedMedicine.getMindWound + inventoryManager.GetAssistHerb().getMindWound);
             }
             patient.ApplyMedicine(selectedMedicine);
-            Debug.Log($"给患者使用了药物: {selectedMedicine.getMedicineName}");
             inventoryManager.DeleteMedicine();
             inventoryManager.DeleteAssistHerb();
+            EventManager.CallMedicineInventoryUPdate();
         }
     }
-    public void OnClickButton(int i)
-    {
-        if(lastIndex != i)
-        {
-            detailUI.gameObject.SetActive(true);
-            medicineName.text = inventoryManager.GetMedicine().getMedicineName;
-            medicineDetail.text = inventoryManager.GetMedicine().getMedicineDetail;
-            lastIndex = i;
-        }
-        else
-        {
-            detailUI.gameObject.SetActive(false);
-            lastIndex = -1;
-        }
 
-    }//点击，选中的逻辑
     
     public void ClearDesk()
     {

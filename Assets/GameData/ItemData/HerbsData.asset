@@ -12,4 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6334353f3ec80a42a78c55c02f7df40, type: 3}
   m_Name: HerbsData
   m_EditorClassIdentifier: 
-  herbList: []
+  sprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  herbList:
+  - herbName: "\u9178\u67A3\u4EC1"
+    herbDetail: "\u6548\u679C\uFF1A\u7F13\u89E3\u7CBE\u795E\u4F24\u5BB3"
+    herbSprite: {fileID: 0}
+    mindWound: 2
+    outsideWound: 1
+    internalWound: 7
+  - herbName: "\u8FDC\u5FD7"
+    herbDetail: "\u6548\u679C\uFF1A\u7F13\u89E3\u7CBE\u795E\u4F24\u5BB3"
+    herbSprite: {fileID: 0}
+    mindWound: 2
+    outsideWound: 7
+    internalWound: 1

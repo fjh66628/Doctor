@@ -36,7 +36,7 @@ public class AssistHerb
         { internalWound = wound; }
     public void ChangeOutsideWound(int wound) { outsideWound = wound; }
     public void ChangeName(string name) { assistHerbName = name; }
-    public void ChangeDetail() { assistHerbDetail = "外伤" + outsideWound + "\n" + "内伤" + internalWound + "\n"; }
+    public void ChangeDetail() { assistHerbDetail = assistHerbDetail + "\n"+"内伤" + internalWound + "\n"+"外伤" + outsideWound + "\n" + "精神伤" + mindWound + "\n" ;}
     public void ChangeSprite(Sprite sprite) { assistHerbSprite = sprite; }
     
 }

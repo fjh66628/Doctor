@@ -30,21 +30,53 @@ public class AssistHerbInventory : MonoBehaviour
         EventManager.HerbInventoryUpdateEvent -= UpdateUI;
     }
     
-    void UpdateUI()
+    // 添加一个专门的方法来卸载所有按钮
+    private void UnloadAllButtons()
     {
-        // 销毁已有子对象
+        // 首先移除所有按钮的事件监听器
+        if (assistHerbButtons != null && assistHerbButtons.Count > 0)
+        {
+            foreach (var button in assistHerbButtons)
+            {
+                if (button != null)
+                {
+                    button.onClick.RemoveAllListeners();
+                }
+            }
+        }
+        
+        // 销毁所有子对象
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
             var child = transform.GetChild(i);
-            if (Application.isPlaying)
-                Destroy(child.gameObject);
-            else
-                DestroyImmediate(child.gameObject);
+            if (child != null && child.gameObject != null)
+            {
+                if (Application.isPlaying)
+                {
+                    Destroy(child.gameObject);
+                }
+                else
+                {
+                    DestroyImmediate(child.gameObject);
+                }
+            }
         }
         
-        // 清理列表
-        if (assistHerbButtons != null) assistHerbButtons.Clear();
-        if (assistHerbtextMeshProUGUIs != null) assistHerbtextMeshProUGUIs.Clear();
+        // 清空列表
+        if (assistHerbButtons != null) 
+        {
+            assistHerbButtons.Clear();
+        }
+        if (assistHerbtextMeshProUGUIs != null) 
+        {
+            assistHerbtextMeshProUGUIs.Clear();
+        }
+    }
+    
+    void UpdateUI()
+    {
+        // 先卸载所有现有的按钮
+        UnloadAllButtons();
         
         // 检查引用
         if (inventoryManager == null)
@@ -62,7 +94,12 @@ public class AssistHerbInventory : MonoBehaviour
         // 获取辅助草药数量
         int assistHerbCount = inventoryManager.GetAssistHerbCount();
         
-        Debug.Log($"[AssistHerbInventory] Creating {assistHerbCount} assist herb buttons");
+        // 如果没有辅助草药，直接返回
+        if (assistHerbCount <= 0)
+        {
+            Debug.Log($"[AssistHerbInventory] 没有辅助草药可显示");
+            return;
+        }
         
         // 生成辅助草药按钮
         for (int i = 0; i < assistHerbCount; i++)
@@ -75,6 +112,12 @@ public class AssistHerbInventory : MonoBehaviour
             }
             
             GameObject newherb = Instantiate(herbPrefab, transform, false);
+            if (newherb == null)
+            {
+                Debug.LogError($"[AssistHerbInventory] 实例化herbPrefab失败 (index {i})");
+                continue;
+            }
+            
             newherb.SetActive(true);
             
             // 设置图片
@@ -92,6 +135,10 @@ public class AssistHerbInventory : MonoBehaviour
                     Debug.LogWarning($"[AssistHerbInventory] Sprite is null for assist herb {assistHerb.getAssistHerbName} (index {i})");
                 }
             }
+            else
+            {
+                Debug.LogWarning($"[AssistHerbInventory] 在按钮预制体中找不到Image组件 (index {i})");
+            }
             
             // 设置文本
             var txt = newherb.GetComponentInChildren<TextMeshProUGUI>(true);
@@ -100,6 +147,10 @@ public class AssistHerbInventory : MonoBehaviour
                 txt.gameObject.SetActive(true);
                 txt.enabled = true;
                 txt.text = assistHerb.getAssistHerbName;
+            }
+            else
+            {
+                Debug.LogWarning($"[AssistHerbInventory] 在按钮预制体中找不到TextMeshProUGUI组件 (index {i})");
             }
             
             // 绑定点击事件
@@ -113,11 +164,21 @@ public class AssistHerbInventory : MonoBehaviour
                 int idx = i;
                 btn.onClick.RemoveAllListeners();
                 btn.onClick.AddListener(() => OnClickAssistHerbButton(idx));
-                if (assistHerbButtons != null) assistHerbButtons.Add(btn);
+                
+                if (assistHerbButtons != null) 
+                {
+                    assistHerbButtons.Add(btn);
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"[AssistHerbInventory] 在按钮预制体中找不到Button组件 (index {i})");
             }
             
             if (assistHerbtextMeshProUGUIs != null && txt != null) 
+            {
                 assistHerbtextMeshProUGUIs.Add(txt);
+            }
             
             // 确保RectTransform正确
             var rt = newherb.GetComponent<RectTransform>();
@@ -127,10 +188,15 @@ public class AssistHerbInventory : MonoBehaviour
                 rt.anchoredPosition = Vector2.zero;
             }
         }
+        
+        Debug.Log($"[AssistHerbInventory] 更新完成，生成了 {assistHerbCount} 个按钮");
     }
     
     void Start()
     {
+        // 初始时卸载所有可能存在的按钮
+        UnloadAllButtons();
+        
         if (detailUIs != null && detailUIs.Count > 0)
         {
             foreach (var d in detailUIs)
@@ -162,7 +228,6 @@ public class AssistHerbInventory : MonoBehaviour
     
     public void OnClickAssistHerbButton(int i)
     {
-        Debug.Log($"点击辅助草药按钮: {i}");
         
         if (inventoryManager == null)
         {
@@ -206,7 +271,6 @@ public class AssistHerbInventory : MonoBehaviour
             if (targetDetail != null) 
             {
                 targetDetail.gameObject.SetActive(true);
-                Debug.Log($"显示辅助草药详情: {aHerb.getAssistHerbName}");
             }
             if (targetName != null) targetName.text = aHerb.getAssistHerbName;
             if (targetDetailText != null) targetDetailText.text = aHerb.getAssistHerbDetail;
@@ -217,11 +281,11 @@ public class AssistHerbInventory : MonoBehaviour
             if (targetDetail != null) 
             {
                 targetDetail.gameObject.SetActive(false);
-                Debug.Log($"隐藏详情并选择辅助草药: {aHerb.getAssistHerbName}");
             }
             if (aHerb.getAssistHerbName != "空")
                 EventManager.CallSeleckedAssistHerb(inventoryManager.GetAssistHerb(i));
             assLastIndex = -1;
         }
+        EventManager.CallMedicineInventoryUPdate();
     }
 }

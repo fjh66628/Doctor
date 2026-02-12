@@ -77,7 +77,7 @@ public class CraftManager : MonoBehaviour
             if (herbsReadyToCombin[i] != null)
             {
                 count++;
-                Debug.Log(count+ "正在计算");
+
                 medicineOutWound += herbsReadyToCombin[i].getOutsideWound;
                 medicineInternalWound += herbsReadyToCombin[i].getInternalWound;
                 mindWound += herbsReadyToCombin[i].getMindWound;
@@ -86,10 +86,10 @@ public class CraftManager : MonoBehaviour
         }
         if (count > 0)
         {
-            Debug.Log(count);
-            medicineInternalWound /= count;
-            medicineOutWound /= count;
-            mindWound /= count;
+            // 使用 Mathf.RoundToInt 进行四舍五入
+            medicineInternalWound = Mathf.RoundToInt((float)medicineInternalWound / count);
+            medicineOutWound = Mathf.RoundToInt((float)medicineOutWound / count);
+            mindWound = Mathf.RoundToInt((float)mindWound / count);
         }
         Medicine medicine = new Medicine(); 
         medicine.ChangeInternalWound(medicineInternalWound);

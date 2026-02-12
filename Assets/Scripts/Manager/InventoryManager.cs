@@ -151,7 +151,6 @@ public class InventoryManager : MonoBehaviour
     public void DeleteMedicine()
     {
         medicineInventory = medicineData.getMedicinesList[0];
-        EventManager.CallMedicineInventoryUPdate();
     }
     public void AddComebineMedicine(Medicine medicine)
     {

@@ -12,4 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c107e0bee70dac49bccccc2e180634a, type: 3}
   m_Name: AssistHerbData
   m_EditorClassIdentifier: 
-  assistHerbList: []
+  assistHerbList:
+  - assistHerbName: "\u4EBA\u53C2"
+    assistHerbDetail: "\u6548\u679C\uFF1A\u5927\u8865\u5143\u6C14"
+    assistHerbSprite: {fileID: 0}
+    mindWound: 0
+    outsideWound: 1
+    internalWound: 1
+  sprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
