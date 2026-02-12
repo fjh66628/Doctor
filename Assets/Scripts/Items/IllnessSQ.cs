@@ -45,23 +45,23 @@ public class IllnessSQ : ScriptableObject
         }
         else if (day == 2)
         {
-            return new List<Illness> { B, C, D };
+            return new List<Illness> { C, D };
         }
         else if (day == 3)
         {
-            return new List<Illness> { C, D, E, F };
+            return new List<Illness> { E, F };
         }
         else if (day == 4)
         {
-            return new List<Illness> { E, F, G, H, I };
+            return new List<Illness> { G, H, I };
         }
         else if (day == 5)
         {
-            return new List<Illness> { H, I, J, K, L, M };
+            return new List<Illness> {J, K, L, M };
         }
         else
         {
-            return new List<Illness> { K, L, M, N, O, P, Q };
+            return new List<Illness> { N, O, P, Q };
         }
     }
     

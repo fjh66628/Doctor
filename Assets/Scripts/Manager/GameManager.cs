@@ -105,7 +105,6 @@ public class GameManager : MonoBehaviour
         currentDay++;
         EventManager.CallUpdateDay();
 
-        uiManager.ShowTip($"进入第{currentDay}天");
         Tips();
         
         // 检查是否到达第7天
@@ -118,7 +117,7 @@ public class GameManager : MonoBehaviour
     public void OnPatientCuredHandler()
     {
         curedPatientsCount++;
-        if(curedPatientsCount == 2 || curedPatientsCount == 5 || curedPatientsCount == 9 || curedPatientsCount == 14 || curedPatientsCount == 20 || curedPatientsCount == 27)
+        if(curedPatientsCount == 2 || curedPatientsCount == 4 || curedPatientsCount == 6 || curedPatientsCount == 9 || curedPatientsCount == 13 || curedPatientsCount == 17)
         {
             GoToNextDay();
         }

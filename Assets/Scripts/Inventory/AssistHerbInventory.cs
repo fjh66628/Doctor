@@ -188,8 +188,7 @@ public class AssistHerbInventory : MonoBehaviour
                 rt.anchoredPosition = Vector2.zero;
             }
         }
-        
-        Debug.Log($"[AssistHerbInventory] 更新完成，生成了 {assistHerbCount} 个按钮");
+
     }
     
     void Start()
