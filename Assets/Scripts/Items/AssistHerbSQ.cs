@@ -14,7 +14,7 @@ public class AssistHerbSQ : ScriptableObject
     AssistHerb D = new AssistHerb("黄连","效果：清热解毒",null,2,0,0);
     AssistHerb E = new AssistHerb("板蓝根","效果：抗病毒",null,0,2,0);
     AssistHerb F = new AssistHerb("银翘散","效果：疏风解表",null,0,0,2);
-    AssistHerb G = new AssistHerb("红色草药","和其他药一起吃可以增加药效",null,2,1,1);
+    [SerializeField]AssistHerb G = new AssistHerb("红色草药","和其他药一起吃可以增加药效",null,2,1,1);
     AssistHerb H = new AssistHerb("黄色草药","在西班牙的小村庄发现的草药",null,1,2,1);
     AssistHerb I = new AssistHerb("绿色草药","生长在阿克雷山区的草药",null ,2,2,2);
     AssistHerb J = new AssistHerb("蓝色草药","是强力的药剂，可以解毒",null ,1,3,0);
@@ -34,6 +34,12 @@ public class AssistHerbSQ : ScriptableObject
             J.ChangeDetail();
             K.ChangeDetail();
             L.ChangeDetail();
+            G.ChangeSprite(sprites[6]);
+            H.ChangeSprite(sprites[7]);
+            I.ChangeSprite(sprites[8]);
+            J.ChangeSprite(sprites[9]);
+            K.ChangeSprite(sprites[10]);
+            L.ChangeSprite(sprites[11]);
     }
     public void RefreshData(int day)
     {
