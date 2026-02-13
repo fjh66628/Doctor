@@ -35,12 +35,11 @@ public class DayUIManager : MonoBehaviour
         {
             int day = GameManager.Instance.GetCurrentDay();
             int total = GameManager.Instance.totalDays;
-            dayText.text = $"day {day}/7";
+            dayText.text = $"day {day}/6";
         }
         else
         {
-            dayText.text = "第1天";
-            dayText.text = "第1天 1/7";
+            dayText.text = "第1天 1/6";
         }
     }
 }

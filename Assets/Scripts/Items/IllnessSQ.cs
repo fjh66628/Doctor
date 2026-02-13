@@ -28,7 +28,7 @@ public class IllnessSQ : ScriptableObject
     Illness N = new Illness("慢性病", "症状：长期折磨", null, 6, 3, 7);
     Illness O = new Illness("急性病", "症状：突发严重", null, 3, 6, 5);
     Illness P = new Illness("传染病", "症状：易传播", null, 8, 6, 3);
-    Illness Q = new Illness("职业病", "症状：特定症状", null, 6, 5, 7);
+    Illness Q = new Illness("职业病", "症状：特定症状", null, 5, 4, 6);
     
     // 打乱列表的方法
     private List<Illness> ShuffleList(List<Illness> list)

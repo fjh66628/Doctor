@@ -63,6 +63,7 @@ public class CraftManager : MonoBehaviour
         herbsReadyToCombin[1] = null;
         herbsReadyToCombin[2] = null;
         craftSize = GetCraftSize(GameManager.Instance.GetCurrentDay());
+        HRTindex = 0;
         ImageUpDate(); 
         EventManager.CallMedicineInventoryUPdate();
     }

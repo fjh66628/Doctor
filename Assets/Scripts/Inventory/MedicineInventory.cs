@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 [System.Serializable]
@@ -85,11 +86,15 @@ public class MedicineInventory : MonoBehaviour
             inventoryManager.DeleteAssistHerb();
             EventManager.CallMedicineInventoryUPdate();
         }
+        detailUI.gameObject.SetActive(false);
+        isClicked = false;
     }
 
     
     public void ClearDesk()
     {
+        detailUI.gameObject.SetActive(false);
+        isClicked = false;
         inventoryManager.DeleteAssistHerb();
         inventoryManager.DeleteMedicine();
         UpdateUI();
