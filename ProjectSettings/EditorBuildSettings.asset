@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Clinic1232.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/StartMenu.unity
+    guid: e15163c4e31989c4087803548c0337f1
+  - enabled: 1
+    path: Assets/Scenes/Clinic.unity
+    guid: 4396a47fb055fe74b9b5d1d498a50d89
+  - enabled: 1
+    path: Assets/Scenes/Ending-bad.unity
+    guid: d2999992a9203164b9457f6646fb19dc
+  - enabled: 1
+    path: Assets/Scenes/Ending-good.unity
+    guid: d043a4a3389e29043999a424f4f4b5ae
+  - enabled: 1
+    path: Assets/Scenes/Ending-normal.unity
+    guid: a541cf75c4c550f44b57f8956631593e
   m_configObjects: {}

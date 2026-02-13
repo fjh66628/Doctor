@@ -236,20 +236,39 @@ public class Patient : MonoBehaviour
         illnessSQ.RefreshData(GameManager.Instance.GetCurrentDay());
     }
     
-    public void ApplyMedicine(Medicine medicine)
+public void ApplyMedicine(Medicine medicine)
+{
+    // 计算治疗后的值
+    float afterInside = insidewoundnum - medicine.getInsideWound;
+    float afterOutside = outsidewoundnum - medicine.getOutsideWound;
+    float afterSpirit = spiritwoundnum - medicine.getMindWound;
+    
+    // 检查是否有任何值会变为负数（治疗过度）
+    if (afterInside < 0f || afterOutside < 0f || afterSpirit < 0f)
     {
-        // 检查是否会有任何数值变为负数
-        if (insidewoundnum - medicine.getInsideWound != 0f ||
-            outsidewoundnum - medicine.getOutsideWound != 0f ||
-            spiritwoundnum - medicine.getMindWound != 0f)
-        {
-            EventManager.CallFailToCure();
-            return;
-        }
-
-        
-        EventManager.CallCureSuccess();
-
+        EventManager.CallFailToCure();
+        return;
     }
+    
+    // 检查是否所有值都大于0（治疗不足）
+    if (afterInside > 0f && afterOutside > 0f && afterSpirit > 0f)
+    {
+        EventManager.CallNotCure();
+        return;
+    }
+    
+    // 检查是否所有值都等于0（刚好治愈）
+    if (Mathf.Approximately(afterInside, 0f) && 
+        Mathf.Approximately(afterOutside, 0f) && 
+        Mathf.Approximately(afterSpirit, 0f))
+    {
+        EventManager.CallCureSuccess();
+        return;
+    }
+    
+    // 混合情况：部分值为0，部分大于0，且没有任何值小于0
+    // 根据您的要求，这种情况调用CallFailToCure()
+    EventManager.CallFailToCure();
+}
 
 }

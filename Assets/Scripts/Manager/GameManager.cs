@@ -74,12 +74,14 @@ public class GameManager : MonoBehaviour
         EventManager.SkipThePatientEvent += OnPatientUntreatedHandler;
         EventManager.FailToCureEvent += OnMedicationFailedHandler;
 
+
     }
     private void OnDisable()
     {
         EventManager.CureSuccessfullyEvent -= OnPatientCuredHandler;
         EventManager.SkipThePatientEvent -= OnPatientUntreatedHandler;
         EventManager.FailToCureEvent -= OnMedicationFailedHandler;
+
     }
     // ========== 1. 外部访问天数信息的方法 ==========
     public int GetCurrentDay()
@@ -96,7 +98,6 @@ public class GameManager : MonoBehaviour
     {
         return (float)currentDay / totalDays;
     }
-
     // 进入下一天的方法
     public void GoToNextDay()
     {
@@ -126,12 +127,12 @@ public class GameManager : MonoBehaviour
     {
         switch(currentDay)
         {
-            case 1:uiManager.ShowTip("欢迎来到医馆！在这里你需要对病人查病情，合成药材并把做好的药灌给病人。将病人受伤值降至10以下，成功了收获锦旗，失败了可能收到各种差评匾额——开始你的行医之旅吧！");return;
-            case 2:uiManager.ShowTip("恭喜顺利完成第一天的工作！今天开始，病人数量将会稳步上涨，做好准备！（解锁药品配方：白水药）");return;
-            case 3:uiManager.ShowTip("病人病情升级！现在要同时搞定外伤、内伤、精神伤多项才能痊愈。别慌，解锁新技能：用中瓶混合两种主药，专治各种复杂病号！（解锁中瓶；解锁新配方；解锁新病症）");return;
-            case 4:uiManager.ShowTip("病人们可都指望着你呢，可千万不能懈怠！（解锁新配方；解锁新病症）");return;
-            case 5:uiManager.ShowTip("注意！病人的症状将要“组团来袭”了。不过别慌，你的制药术也升级了——快祭出“大型药瓶”，给它们来个“三合一豪华套餐”吧！（解锁大瓶；解锁新配方；解锁新病症）");return;
-            case 6:uiManager.ShowTip("坚持住，医馆的未来可全靠你的手艺了！（解锁新配方；解锁新病症）");return;
+            case 1:uiManager.ShowTip("欢迎来到医馆！在这里你需要对病人查病情，合成药材并把做好的药灌给病人。将病人受伤值降至0，成功了收获锦旗，失败了可能收到各种差评匾额——开始你的行医之旅吧！");return;
+            case 2:uiManager.ShowTip("恭喜顺利完成第一天的工作！今天开始，病人数量将会稳步上涨，做好准备！（有更多草药了）");return;
+            case 3:uiManager.ShowTip("病人病情升级！现在要同时搞定外伤、内伤、精神伤多项才能痊愈。别慌，解锁新技能：用中瓶混合两种主药专治各种复杂病号！（解锁合成台第二格子；解锁新病症；药效是药草的数值的平均值。）");return;
+            case 4:uiManager.ShowTip("病人们可都指望着你呢，可千万不能懈怠！（解锁辅助药草，可以加强治疗属性；解锁新病症）");return;
+            case 5:uiManager.ShowTip("注意！病人的症状将要“组团来袭”了。不过别慌，你的制药术也升级了——快祭出“大型药瓶”，给它们来个“三合一豪华套餐”吧！（解锁合成台第三个格子；解锁新病症）");return;
+            case 6:uiManager.ShowTip("坚持住，医馆的未来可全靠你的手艺了！（解锁新辅助药草；解锁新病症）");return;
         }
     }
     // ========== 3. 放弃治疗事件监听 ==========

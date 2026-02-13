@@ -35,7 +35,7 @@ public class ExitGame : MonoBehaviour
     }
 
     // 退出游戏的方法
-    private void QuitGame()
+    public void QuitGame()
     {
 #if UNITY_EDITOR
         // 在编辑器中停止播放

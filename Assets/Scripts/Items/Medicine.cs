@@ -8,7 +8,7 @@ public class Medicine
     [SerializeField] string medicineName;
     [SerializeField] string medicineDetail;
     [SerializeField] Sprite medicineSprite;
-
+    [SerializeField] List<Sprite> sprites;
     [Header("内伤")]
     [SerializeField] int insideWound;
     [Header("外伤")]
@@ -21,7 +21,7 @@ public class Medicine
     public string getMedicineName => medicineName;
     public string getMedicineDetail => medicineDetail;
     public Sprite getMedicineSprite => medicineSprite;
-
+    public List<Sprite> getSprites => sprites;
     //wound values
     public int getInsideWound => insideWound;
     public int getOutsideWound => outsideWound;

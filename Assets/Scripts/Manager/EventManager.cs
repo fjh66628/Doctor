@@ -15,7 +15,7 @@ public static class EventManager
     public static event Action SkipThePatientEvent;//跳过病人事件
     public static event Action CureSuccessfullyEvent;//治好病人事件
     public static event Action UpdateDayEvent;//天数更新事件
-
+    public static event Action NotCureEvent;
 
 
 
@@ -64,5 +64,9 @@ public static class EventManager
     public static void CallUpdateDay()
     {
         UpdateDayEvent?.Invoke();
+    }
+    public static void CallNotCure()
+    {
+        NotCureEvent?.Invoke();
     }
 }

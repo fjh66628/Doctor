@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,15 +15,14 @@ public class DayCounter : MonoBehaviour
     [Header("Hidden UI - Images")]
     [SerializeField] private Image hiddenImage1; // 不可交互
     [SerializeField] private Image hiddenImage2; // 隐藏UI，恢复交互
-    [SerializeField] private Image hiddenImage3; // 进入场景
+    [SerializeField] private Image hiddenImage3; // 退出游戏
 
     [Header("Hidden UI - Texts")]
     [SerializeField] private TextMeshProUGUI hiddenText1; // 不可交互
     [SerializeField] private TextMeshProUGUI hiddenText2; // 隐藏UI，恢复交互
-    [SerializeField] private TextMeshProUGUI hiddenText3; // 进入场景
+    [SerializeField] private TextMeshProUGUI hiddenText3; // 退出游戏
 
     [Header("Settings")]
-    [SerializeField] private string targetSceneName = "NextScene";
     [SerializeField] private int maxDays = 6;
     [SerializeField] private bool resetOnEsc = false;
     [SerializeField] private bool enableDebugTest = false;
@@ -48,9 +46,7 @@ public class DayCounter : MonoBehaviour
 
     void Start()
     {
-
         CheckAllUIRefrences();
-
         InitializeUI();
         UpdateDayText();
 
@@ -89,9 +85,12 @@ public class DayCounter : MonoBehaviour
         SetHiddenUIsVisible(false);
         yield return new WaitForSeconds(1f);
     }
+    
     private void CheckAllUIRefrences()
     {
+        // 空方法，用于占位
     }
+    
     private void InitializeUI()
     {
         StoreOriginalColors();
@@ -366,7 +365,7 @@ public class DayCounter : MonoBehaviour
 
     private void OnHiddenImage3Clicked()
     {
-        LoadTargetScene();
+        QuitGame();
     }
 
     private void OnHiddenText2Clicked()
@@ -376,7 +375,7 @@ public class DayCounter : MonoBehaviour
 
     private void OnHiddenText3Clicked()
     {
-        LoadTargetScene();
+        QuitGame();
     }
 
     private void HideHiddenUIsAndRestore()
@@ -386,17 +385,19 @@ public class DayCounter : MonoBehaviour
         SetMainUIInteractable(true);
     }
 
-    private void LoadTargetScene()
+    // 修改为退出游戏
+    private void QuitGame()
     {
-        if (!string.IsNullOrEmpty(targetSceneName))
-            SceneManager.LoadScene(targetSceneName);
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        Application.Quit();
+        #endif
     }
 
     // 【核心修复】重新实现SetHiddenUIsVisible方法
     private void SetHiddenUIsVisible(bool visible)
     {
-
-
         // 记录设置前的状态
         VerifyHiddenUIState(!visible);
 
@@ -444,7 +445,6 @@ public class DayCounter : MonoBehaviour
     // 【新增】验证隐藏UI状态的方法
     private void VerifyHiddenUIState(bool expectedVisible)
     {
-
         int activeCount = 0;
         int totalCount = 0;
 
@@ -532,16 +532,10 @@ public class DayCounter : MonoBehaviour
         areHiddenUIsVisible = false;
         SetMainUIInteractable(true);
         SetAllUIsDark();
-
-
     }
 
     public void SetResetOnEsc(bool enable)
     {
         resetOnEsc = enable;
-
     }
-
-    
-
 }

@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assistHerbList: []
   sprites:
-  - {fileID: 21300000, guid: e421a9582c413f345862685da71f7e40, type: 3}
+  - {fileID: 21300000, guid: 332a574d9b5c4d1439af965a3d992377, type: 3}
   - {fileID: 21300000, guid: ef48d8ac14c3e4e468524574d30559bd, type: 3}
   - {fileID: 21300000, guid: 2c2df9a7054008d4a8a8b29a417f26e5, type: 3}
   - {fileID: 21300000, guid: 332a574d9b5c4d1439af965a3d992377, type: 3}
-  - {fileID: 21300000, guid: 154b03b0749be7a4586c31f5f707a9ed, type: 3}
-  - {fileID: 21300000, guid: ef48d8ac14c3e4e468524574d30559bd, type: 3}
   - {fileID: 21300000, guid: e421a9582c413f345862685da71f7e40, type: 3}
   - {fileID: 21300000, guid: ef48d8ac14c3e4e468524574d30559bd, type: 3}
-  - {fileID: 21300000, guid: 332a574d9b5c4d1439af965a3d992377, type: 3}
-  - {fileID: 21300000, guid: e421a9582c413f345862685da71f7e40, type: 3}
+  - {fileID: 21300000, guid: 9189fc647f7ebdd469ca5f9b38f3997f, type: 3}
+  - {fileID: 21300000, guid: 00acc5e40bbad584fb098764e7f517a2, type: 3}
+  - {fileID: 21300000, guid: 7111572e1a62106439e5daac799c2531, type: 3}
+  - {fileID: 21300000, guid: f83d55e98b1e5644a9ebb3110241fb01, type: 3}
   - {fileID: 21300000, guid: 2c2df9a7054008d4a8a8b29a417f26e5, type: 3}
   - {fileID: 21300000, guid: 154b03b0749be7a4586c31f5f707a9ed, type: 3}

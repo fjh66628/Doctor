@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
 {
     [SerializeField] DialogueSQ appriciate;
     [SerializeField] DialogueSQ rejected;
+    [SerializeField] DialogueSQ notCure;
     [SerializeField] Image dialogue;  // 对话框背景
     [SerializeField] TextMeshProUGUI text;  // 文本组件
     [SerializeField] float time = 2f;  // 显示时间，默认为2秒
@@ -19,12 +20,14 @@ public class DialogueManager : MonoBehaviour
     {
         EventManager.CureSuccessfullyEvent += Appreciate;
         EventManager.FailToCureEvent += Rejected;
+        EventManager.NotCureEvent += NotCure;
     }
     
     void OnDisable()
     {
         EventManager.CureSuccessfullyEvent -= Appreciate;
         EventManager.FailToCureEvent -= Rejected;
+        EventManager.NotCureEvent -= NotCure;
         
         // 清理协程
         if (currentDialogueCoroutine != null)
@@ -43,7 +46,10 @@ public class DialogueManager : MonoBehaviour
     {
         ShowDialogue(rejected);
     }
-    
+    void NotCure()
+    {
+        ShowDialogue(notCure);
+    }
     // 显示对话框的主要方法
     private void ShowDialogue(DialogueSQ dialogueData)
     {

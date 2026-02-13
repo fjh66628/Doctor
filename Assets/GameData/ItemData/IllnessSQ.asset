@@ -13,33 +13,603 @@ MonoBehaviour:
   m_Name: IllnessSQ
   m_EditorClassIdentifier: 
   illnessList:
-  - illnessName: "\u64E6\u4F24"
-    illnessDetail: "\u75C7\u72B6\uFF1A\u8F7B\u5FAE\u6D41\u8840"
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
     illnessSprite: {fileID: 0}
     insideWound: 8
-    outsideWound: 1
-    spiritWound: 1
-  - illnessName: "\u708E\u75C7"
-    illnessDetail: "\u75C7\u72B6\uFF1A\u8179\u75DB"
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
     illnessSprite: {fileID: 0}
-    insideWound: 1
-    outsideWound: 8
-    spiritWound: 1
-  - illnessName: "\u708E\u75C7"
-    illnessDetail: "\u75C7\u72B6\uFF1A\u8179\u75DB"
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
     illnessSprite: {fileID: 0}
-    insideWound: 1
-    outsideWound: 8
-    spiritWound: 1
-  - illnessName: "\u5931\u7720"
-    illnessDetail: "\u75C7\u72B6\uFF1A\u7CBE\u795E\u75B2\u60EB"
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
     illnessSprite: {fileID: 0}
-    insideWound: 1
-    outsideWound: 1
-    spiritWound: 8
-  - illnessName: "\u9AA8\u6298"
-    illnessDetail: "\u75C7\u72B6\uFF1A\u5267\u70C8\u75BC\u75DB"
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
     illnessSprite: {fileID: 0}
-    insideWound: 7
-    outsideWound: 2
-    spiritWound: 1
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7
+  - illnessName: "\u804C\u4E1A\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7279\u5B9A\u75C7\u72B6"
+    illnessSprite: {fileID: 0}
+    insideWound: 5
+    outsideWound: 4
+    spiritWound: 6
+  - illnessName: "\u6025\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u7A81\u53D1\u4E25\u91CD"
+    illnessSprite: {fileID: 0}
+    insideWound: 3
+    outsideWound: 6
+    spiritWound: 5
+  - illnessName: "\u4F20\u67D3\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u6613\u4F20\u64AD"
+    illnessSprite: {fileID: 0}
+    insideWound: 8
+    outsideWound: 6
+    spiritWound: 3
+  - illnessName: "\u6162\u6027\u75C5"
+    illnessDetail: "\u75C7\u72B6\uFF1A\u957F\u671F\u6298\u78E8"
+    illnessSprite: {fileID: 0}
+    insideWound: 6
+    outsideWound: 3
+    spiritWound: 7

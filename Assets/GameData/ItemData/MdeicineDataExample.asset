@@ -16,24 +16,37 @@ MonoBehaviour:
   - medicineName: "\u7A7A"
     medicineDetail: "\u65E0"
     medicineSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    mindWound: 0
+    sprites: []
+    insideWound: 0
     outsideWound: 0
-    internalWound: 0
+    mindWound: 0
   - medicineName: "\u5C0F\u74F6\u836F\u5242"
     medicineDetail: "\u7528\u5C0F\u74F6\u5B50\u88C5\u7684\u836F\u5242"
-    medicineSprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
-    mindWound: 0
+    medicineSprite: {fileID: 21300000, guid: 9fe5b40f3067588429567c3658fd6bf0, type: 3}
+    sprites:
+    - {fileID: 21300000, guid: 0e5464f4321b8be4ba2edc22b6e08016, type: 3}
+    - {fileID: 21300000, guid: 49392dca245bf1846a67f47cef633f92, type: 3}
+    - {fileID: 21300000, guid: 4551c49f8e0d1ee44af8e1d85888d083, type: 3}
+    insideWound: 0
     outsideWound: 0
-    internalWound: 0
+    mindWound: 0
   - medicineName: "\u4E2D\u74F6\u836F\u5242"
     medicineDetail: "\u7528\u9002\u4E2D\u7684\u74F6\u5B50\u88C5\u7684\u836F\u5242"
-    medicineSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-    mindWound: 0
+    medicineSprite: {fileID: 21300000, guid: b05d290e9f855b647a4aaa0fd960d0f7, type: 3}
+    sprites:
+    - {fileID: 21300000, guid: 042a8a9f5849e7a4a94a383b2907e678, type: 3}
+    - {fileID: 21300000, guid: c45ff78a499fa3544a68052f34e5a2e9, type: 3}
+    - {fileID: 21300000, guid: 241764abc9ff5d7468f83dd761858dd0, type: 3}
+    insideWound: 0
     outsideWound: 0
-    internalWound: 0
+    mindWound: 0
   - medicineName: "\u5927\u74F6\u836F\u5242"
     medicineDetail: "\u7528\u5927\u74F6\u5B50\u88C5\u7684\u836F\u5242"
-    medicineSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-    mindWound: 0
+    medicineSprite: {fileID: 21300000, guid: 652802748c94fce40b27ca70b3883519, type: 3}
+    sprites:
+    - {fileID: 21300000, guid: 35f35605fa828de4589a52bbd7a86522, type: 3}
+    - {fileID: 21300000, guid: 5777e2f15f1c245429995900de868b52, type: 3}
+    - {fileID: 21300000, guid: 3b93033610c04704797a231d953a2fe3, type: 3}
+    insideWound: 0
     outsideWound: 0
-    internalWound: 0
+    mindWound: 0
